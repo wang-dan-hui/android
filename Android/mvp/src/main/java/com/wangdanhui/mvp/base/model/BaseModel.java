@@ -1,6 +1,11 @@
 package com.wangdanhui.mvp.base.model;
 
 
+import android.content.Context;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -10,6 +15,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 //M  数据 本地 网络 算法 数据结构
 public class BaseModel {
+
+    private static BaseModel sBaseModel = null;
+    //    单例
+    public static BaseModel getInstance(){
+        if (sBaseModel == null){
+            synchronized (BaseModel.class){
+                if (sBaseModel == null){
+                    sBaseModel = new BaseModel();
+                }
+            }
+        }
+        return sBaseModel;
+    }
+
+
 
 //    数据请求
 //    protected ApiServer mApiServer;
